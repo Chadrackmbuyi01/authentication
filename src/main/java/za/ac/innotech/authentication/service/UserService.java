@@ -16,7 +16,10 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User registerUser(User user){
+        System.out.println("Registering user: " + user.getUsername());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        System.out.println("User registered: " + savedUser.getId());
+        return savedUser;
     }
 }
