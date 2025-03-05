@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import za.ac.innotech.authentication.model.User;
 import za.ac.innotech.authentication.repository.UserRepository;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -21,5 +23,10 @@ public class UserService {
         User savedUser = userRepository.save(user);
         System.out.println("User registered: " + savedUser.getId());
         return savedUser;
+    }
+
+    public boolean authenticate(String username, String password) {
+        Optional<User> user = userRepository.findByUsername(username);
+        return user.isPresent() && passwordEncoder.matches(password, user.get().getPassword());
     }
 }
