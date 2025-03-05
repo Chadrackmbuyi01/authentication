@@ -23,7 +23,8 @@ public class UserController {
         return userService.registerUser(user);
     }
 
-    public RestController<String> login(@RequestBody LoginRequest loginRequest){
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest){
         //Authenticate the user
         boolean isAuthenticated = userService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
         if(isAuthenticated){
