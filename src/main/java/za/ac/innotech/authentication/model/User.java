@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 @Data
@@ -16,10 +17,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = true)
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(unique = true, nullable = true)
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
     @Column(unique = true)
